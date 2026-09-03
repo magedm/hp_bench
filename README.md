@@ -9,7 +9,7 @@
     - then with a hazard pointer constructed and destroyed per iteration (adds the cost of constructing and destroying a nonempty hazard pointer object),
   - at 1 and 8 concurrent threads,
   - with and without 10,000 pre-existing hazard pointers.
-- Targets the [mm_hp](https://github.com/magedm/mm_hp) implementation by default.
+- Targets the [mm_hp](https://github.com/magedm/mm_hp) implementation by default. Clone it alongside this repo.
 - Pointing it at another implementation is a three-line edit at the top of `build.sh`.
 - To build: `./build.sh`.
 - To run the microbenchmarks: `./build/hp_bench`.
