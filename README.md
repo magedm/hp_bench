@@ -14,3 +14,4 @@
 - To build: `./build.sh`.
 - To run the microbenchmarks: `./build/hp_bench`.
 - The output is a configuration block followed by one row per measurement.
+- Example output is under `results/`.
