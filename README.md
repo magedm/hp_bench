@@ -10,7 +10,7 @@
   - at 1 and 8 concurrent threads,
   - with and without 10,000 pre-existing hazard pointers.
 - Targets the [mm_hp](https://github.com/magedm/mm_hp) implementation by default. Clone it alongside this repo.
-- Pointing it at another implementation is a three-line edit at the top of `build.sh`.
+- Pointing it at another implementation is a four-line edit at the top of `build.sh`.
 - To build: `./build.sh`.
 - To run the microbenchmarks: `./build/hp_bench`.
 - The output is a configuration block followed by one row per measurement.

@@ -3,12 +3,13 @@ set -euo pipefail
 
 # Benchmark target — edit these to benchmark another C++26 hazard-pointer impl:
 header="../mm_hp/mm_hp.hpp"
+source="../mm_hp/mm_hp.cpp"
 ns="std"                      # namespace the HP API lives in
 name="mm_hp"                  # label shown in the results
 
-cxx="${CXX:-g++-15}"
+cxx="g++-15"
 std="c++26"
-opt=(-O3 -DNDEBUG -falign-loops=32 -falign-functions=32)  # stabilize tight-loop alignment
+opt=(-O3 -DNDEBUG -falign-loops=64 -falign-jumps=64 --param=align-threshold=2)  # stabilize tight-loop alignment
 
 git_commit() {
   local id dirty
@@ -29,5 +30,5 @@ flags=(-std=$std -Wall -Wextra "${opt[@]}"
        -DBENCH_COMMIT="\"$(git_commit .)\"")
 
 mkdir -p build
-"$cxx" "${flags[@]}" -pthread hp_bench.cpp -o build/hp_bench
+"$cxx" "${flags[@]}" -pthread hp_bench.cpp ${source:+"$source"} -o build/hp_bench
 echo "built: build/hp_bench  ($cxx; $name)"
