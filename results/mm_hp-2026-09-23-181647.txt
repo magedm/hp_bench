@@ -1,0 +1,29 @@
+# machine
+#   cpu           AMD Ryzen 9 9950X 16-Core Processor
+#   cores         16
+#   cpus_allowed  8 9 10 11 12 13 14 15 
+#   kernel        7.0.0-28-generic
+#   clock_policy  performance
+#   clock_max_khz 4300000
+# build
+#   compiler      g++-15 -- gcc 15.2.0
+#   std           c++26
+#   flags         -O3 -DNDEBUG -falign-loops=64 -falign-jumps=64 --param=align-threshold=2
+#   bench_commit  hp_bench-2026-09-23
+# run
+#   impl          mm_hp
+#   impl_header   mm_hp.hpp
+#   impl_commit   mm_hp-2026-09-23
+#   date          2026-09-23T18:16:47-0400
+
+impl       op                                 thr prepop      iters reps  min_ns  med_ns  avg_ns  max_ns   sd_ns
+mm_hp      Load_deref_no_protection             1      0 1000000000   30   0.233   0.233   0.233   0.234  0.0001
+mm_hp      Load_deref_no_protection             8      0 1000000000   30   0.235   0.241   0.242   0.251  0.0042
+mm_hp      Load_deref_HP_protection             1      0 1000000000   30   0.410   0.412   0.412   0.421  0.0021
+mm_hp      Load_deref_HP_protection             8      0 1000000000   30   0.418   0.427   0.428   0.457  0.0073
+mm_hp      Load_deref_HP_protection_ctor_dtor   1      0  100000000   30   1.737   1.743   1.743   1.749  0.0024
+mm_hp      Load_deref_HP_protection_ctor_dtor   8      0  100000000   30   1.753   1.805   1.802   1.871  0.0361
+mm_hp      Load_deref_HP_protection             1  10000 1000000000   30   0.410   0.412   0.413   0.420  0.0025
+mm_hp      Load_deref_HP_protection             8  10000 1000000000   30   0.418   0.426   0.428   0.457  0.0083
+mm_hp      Load_deref_HP_protection_ctor_dtor   1  10000  100000000   30   1.732   1.741   1.741   1.746  0.0030
+mm_hp      Load_deref_HP_protection_ctor_dtor   8  10000  100000000   30   1.755   1.818   1.812   1.878  0.0446
